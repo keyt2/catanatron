@@ -1,5 +1,7 @@
-import gymnasium as gym
-from gymnasium import spaces
+import random
+
+import gym
+from gym import spaces
 import numpy as np
 
 from catanatron.game import Game
@@ -101,6 +103,13 @@ def from_action_space(action_int, playable_actions):
         if normalized.action_type == action_type and normalized.value == value:
             catan_action = action
             break  # return the first one
+
+
+    # """if model tries to choose invalid action, take random action"""
+    # if catan_action is None:
+    #     catan_action = random.choice(playable_actions)
+
+
     assert catan_action is not None
     return catan_action
 
@@ -146,7 +155,7 @@ class CatanatronEnv(gym.Env):
         self.representation = "mixed" if self.representation == "mixed" else "vector"
         self.features = get_feature_ordering(len(self.players), self.map_type)
         self.invalid_actions_count = 0
-        self.max_invalid_actions = 10
+        self.max_invalid_actions = 3000
 
         # TODO: Make self.action_space smaller if possible (per map_type)
         # self.action_space = spaces.Discrete(ACTION_SPACE_SIZE)
@@ -186,6 +195,7 @@ class CatanatronEnv(gym.Env):
     def step(self, action):
         try:
             catan_action = from_action_space(action, self.game.state.playable_actions)
+
         except Exception as e:
             self.invalid_actions_count += 1
 
@@ -210,30 +220,19 @@ class CatanatronEnv(gym.Env):
 
         return observation, reward, done, info
 
-    def reset(
-        self,
-        seed=None,
-        options=None,
-    ):
-        super().reset(seed=seed)
-
+    def reset(self):
         catan_map = build_map(self.map_type)
         for player in self.players:
             player.reset_state()
         self.game = Game(
-            players=self.players,
-            seed=seed,
-            catan_map=catan_map,
-            vps_to_win=self.vps_to_win,
+            players=self.players, catan_map=catan_map, vps_to_win=self.vps_to_win
         )
         self.invalid_actions_count = 0
 
         self._advance_until_p0_decision()
 
         observation = self._get_observation()
-        info = dict(valid_actions=self.get_valid_actions())
-
-        return observation, info
+        return observation
 
     def _get_observation(self):
         sample = create_sample(self.game, self.p0.color)

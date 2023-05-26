@@ -1,0 +1,3 @@
+catanatron
+gym==0.21.0
+numpy
