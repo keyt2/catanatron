@@ -1,0 +1,48 @@
+4 pierwsze modele trenowane na randomie, potem same ze sobą. Od 26 (chyba) są jakieś próby trenowania najlepszego (12) z F z parametrami po tuningu,
+ale to nie wychodzi
+
+model6 z F: 3:97, VP: 3.84
+model7 z F: 2:98, VP: 3.61
+model11 z F: 1:99, VP: 4.04
+model12 z F: 4:96, VP: 4.22
+model14 z F: 3:97, VP: 3.94
+
+tuning modelu 12 z F (parametry):
+
+Best trial:
+  Value:  -0.88
+  Params: 
+    gamma: 0.0006997165078159262
+    max_grad_norm: 0.5194070965598586
+    gae_lambda: 0.01261985779808512
+    exponent_n_steps: 3
+    lr: 9.982573563220869e-05
+    ent_coef: 2.2775493396757354e-05
+    ortho_init: False
+    net_arch: tiny
+    activation_fn: relu
+  User attrs:
+    gamma_: 0.999300283492184
+    gae_lambda_: 0.9873801422019148
+    n_steps: 8
+	
+	
+DWA KOLEJNE POMYSŁY:
+
+1. Może pobawić się trochę z nagrodami? Np. nie dawać tylko +1 za wygraną i -1 za przegraną, tylko dawać nagrodę za każdy zdobyty punkt zwycięstwa?
+
+2. Co do rozmiaru sieci: może UŻYĆ KILKU SIECI do podjęcia różnych decyzji, np. oddzielna sieć do decydowania o miejscu budowania osad, itp.?
+Ogólne decyzje co robimy (czy budujemy, czy kupujemy kartę itd.) mógłby podejmować algorytm gracza AB, a uszczegóławiać by to mogły poszczególne
+sieci neuronowe.
+Tylko wtedy PYTANIE: jakiej wielkości mają być te poszczególne sieci? I ile ich mniej więcej mogłoby być?
+3. Jaki ma być zakres mojej pracy? Czy MUSZĘ zawrzeć w niej jakiś inny algorytm oprócz PPO i jeśli tak, to jaki, biorąc pod uwagę, że np. A2C nie ma
+maskowania? Czy jest sens bawić się w jakieś skomplikowane rzeczy typu Alfa-0?
+4. Jeżeli jedna sieć - to jaki jej rozmiar?
+5. Czy testowanie z customowym graczem G < AB, ale G >> Random, ma sens?
+
+
+
+rozmiar:
+128 x 64 x 32
+
+potem może razy 2
