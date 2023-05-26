@@ -3,7 +3,9 @@ import os
 import json
 from collections import defaultdict
 
+import tensorflow as tf
 import numpy as np
+import pandas as pd
 
 from catanatron.game import GameAccumulator, Game
 from catanatron.json import GameEncoder
@@ -179,8 +181,6 @@ class CsvDataAccumulator(GameAccumulator):
         )
 
     def step(self, game, action):
-        import tensorflow as tf  # lazy import tf so that catanatron simulator is usable without tf
-
         self.data[action.color]["samples"].append(create_sample(game, action.color))
         self.data[action.color]["actions"].append(
             [to_action_space(action), to_action_type_space(action)]
@@ -194,8 +194,6 @@ class CsvDataAccumulator(GameAccumulator):
         self.data[action.color]["board_tensors"].append(flattened_tensor)
 
     def after(self, game):
-        import pandas as pd
-
         if game.winning_color() is None:
             return  # drop game
 

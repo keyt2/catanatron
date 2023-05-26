@@ -1,3 +1,5 @@
+import gym
+from gym.spaces import Discrete, Box
 from ray import tune
 from ray.rllib.models.tf.tf_modelv2 import TFModelV2
 from ray.rllib.models.tf.fcnet import FullyConnectedNetwork
@@ -10,6 +12,7 @@ from ray.rllib.models import ModelCatalog
 from ray.rllib.models.tf.tf_modelv2 import TFModelV2
 from ray.rllib.models.tf.fcnet import FullyConnectedNetwork
 from ray.rllib.utils import try_import_tf
+from gym import spaces
 
 tf = try_import_tf()
 
@@ -32,6 +35,7 @@ class KP0ActionMaskModel(TFModelV2):
         *args,
         **kwargs
     ):
+
         super(KP0ActionMaskModel, self).__init__(
             obs_space, action_space, num_outputs, model_config, name, *args, **kwargs
         )
@@ -66,7 +70,6 @@ ModelCatalog.register_custom_model("kp_mask", KP0ActionMaskModel)
 
 # trainer_config = {"model": {"custom_model": "kp_mask"}, "env_config": env_config}
 # trainer = agents.ppo.PPOTrainer(env="Knapsack-v0", config=trainer_config)
-
 
 # Using: https://github.com/ray-project/ray/issues/7983
 def train_ppo(config, reporter):
@@ -108,6 +111,8 @@ from ray.tune.logger import pretty_print
 
 ray.init()
 trainer = ppo.PPOTrainer(config=config)
+trainer.restore(
+        "C:\\Users\\KOMP\\ray_results\\PPOTrainer_CatanatronEnv_2023-03-06_14-25-02xez6fw_r\\checkpoint_000101\\checkpoint-101")
 
 # Can optionally call trainer.restore(path) to load a checkpoint.
 for i in range(1000):
@@ -117,7 +122,10 @@ for i in range(1000):
 
     if i % 100 == 0:
         checkpoint = trainer.save()
+        trainer.save_to_object();
         print("checkpoint saved at", checkpoint)
+
+print(trainer.evaluate)
 # tune.run(
 #     "PPO",
 #     config=config,

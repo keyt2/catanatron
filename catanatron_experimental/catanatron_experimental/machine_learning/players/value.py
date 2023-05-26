@@ -140,7 +140,6 @@ def value_production(sample, player_name="P0", include_variety=True):
 def contender_fn(params):
     return base_fn(params or CONTENDER_WEIGHTS)
 
-
 class ValueFunctionPlayer(Player):
     """
     Player that selects the move that maximizes a heuristic value function.

@@ -17,6 +17,7 @@ from catanatron_gym.board_tensor_features import (
     create_board_tensor,
 )
 
+
 # from catanatron_experimental.rep_b_model import build_model
 
 # Taken from correlation analysis
@@ -277,3 +278,4 @@ class TensorRLPlayer(Player):
 
     def __repr__(self):
         return super(TensorRLPlayer, self).__repr__() + f"({self.model_path})"
+

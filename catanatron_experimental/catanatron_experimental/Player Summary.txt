@@ -1,0 +1,26 @@
+Player Summary
+                                                                ╷      ╷        ╷             ╷            ╷          ╷          ╷
+                                                                │ WINS │ AVG VP │ AVG SETTLES │ AVG CITIES │ AVG ROAD │ AVG ARMY │ AVG DEV VP
+╶───────────────────────────────────────────────────────────────┼──────┼────────┼─────────────┼────────────┼──────────┼──────────┼────────────╴
+  sb3Player:RED                                                 │    4 │   4.30 │        1.88 │       0.41 │     0.10 │     0.32 │       0.76
+  AlphaBetaPlayer:BLUE(depth=2,value_fn=base_fn,prunning=False) │   96 │   9.93 │        2.67 │       2.68 │     0.90 │     0.01 │       0.08
+  
+
+
+  Player Summary
+                                                                ╷      ╷        ╷             ╷            ╷          ╷          ╷
+                                                                │ WINS │ AVG VP │ AVG SETTLES │ AVG CITIES │ AVG ROAD │ AVG ARMY │ AVG DEV VP 
+╶───────────────────────────────────────────────────────────────┼──────┼────────┼─────────────┼────────────┼──────────┼──────────┼────────────╴
+  sb3Player:RED                                                 │    1 │   3.68 │        1.99 │       0.21 │     0.06 │     0.25 │       0.65
+  AlphaBetaPlayer:BLUE(depth=2,value_fn=base_fn,prunning=False) │   99 │   9.95 │        2.57 │       2.74 │     0.93 │     0.00 │       0.04
+                                                                ╵      ╵        ╵             ╵            ╵          ╵          ╵
+
+
+
+                                                                Player Summary
+                                                                ╷      ╷        ╷             ╷            ╷          ╷          ╷
+                                                                │ WINS │ AVG VP │ AVG SETTLES │ AVG CITIES │ AVG ROAD │ AVG ARMY │ AVG DEV VP 
+╶───────────────────────────────────────────────────────────────┼──────┼────────┼─────────────┼────────────┼──────────┼──────────┼────────────╴
+  sb3Player:RED                                                 │    1 │   3.70 │        1.85 │       0.45 │     0.04 │     0.21 │       0.45
+  AlphaBetaPlayer:BLUE(depth=2,value_fn=base_fn,prunning=False) │   99 │  10.01 │        2.82 │       2.59 │     0.96 │     0.02 │       0.05
+                                                                ╵      ╵        ╵             ╵            ╵          ╵          ╵

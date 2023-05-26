@@ -1,6 +1,6 @@
 from catanatron_experimental.play import simulate
 
-simulate(50, "AB:2,F", None, False, False)
+ 1simulate(50, "AB:2,F", None, False, False)
 
 # Results:
 # AVG Ticks: 235.28
